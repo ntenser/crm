@@ -42,7 +42,6 @@ class CRM
    note = gets.chomp
 
    Contact.create(first_name, last_name, email, note)
-
   end
 
   def modify_existing_contact
@@ -56,15 +55,15 @@ class CRM
   end
 
   def delete_contact
+    pop_contact = Contact.find(id)
     puts "Enter id of the contact you want to delete"
     id = gets.chomp.to_i
+    pop_contact.delete
     puts "Contact deleted"
   end
 
   def display_all_contacts
-     Contact.all.each do |info|
-       contact.display
-     end
+     Contact.all
    end
 
   def search_by_attribute
@@ -72,6 +71,6 @@ class CRM
     attribute = gets.chomp
     puts "Enter the value of contact "
     value = get.chomp
-    return contact
+    Contact.find_by(attribute, value)
   end
 end
